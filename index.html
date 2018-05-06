@@ -1,0 +1,48 @@
+<DOCTYPE <!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>GifTastic</title>
+
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
+    </head>
+    <body>
+        <div class="jumbotron">
+            <div class="row text-center">
+                <div class="col-md-12">
+                    <h1>Touch the button!</h1>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col-md-9" id="buttons"></div>
+                <div class="col-md-3">
+                    <form class="search-form">
+                        <label for="search-terms" class="sr-only">Search</label>
+                        <input type="text" id="search-terms">
+                        <input id="searchButton" type="submit" value="Add a Button">                          
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="card container">
+            <div class="row">
+                <div class="col-md-9">
+                    <h3>Da GIF's!</h3>
+                    <div id="results"></div>
+                </div>
+                <div class="col-md-3">
+                    <h3>Favorites</h3>
+                    <div id="favorites"></div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="assets/javascript/app.js"></script>
+    </body>
+</html>
