@@ -1,4 +1,5 @@
 var topics = ["Monster Hunter World", "Runescape", "League of Legends", "Overwatch", "Wakfu", "Kingdom Hearts", "PUBG", "Dark Souls", "Rachet and Clank", "Horizon Zero Dawn", "Shadow of the Colossus"];
+var imgID = [];
 
 $("body").on("click", ".button", function(){
     var search = $(this).attr("data-name");
@@ -29,6 +30,14 @@ $("body").on("click", "#searchButton", function(){
     renderButtons();
 });
 
+$("body").on("click", ".favorite", function(){
+    var gifID = $(this).attr("data-id");
+    console.log(gifID);
+    var newFavorite = $("#" + gifID);
+    $(this).remove();
+    $("#favorites").prepend(newFavorite);
+});
+
 function renderGifs(search){
     var queryUrl= "https://api.giphy.com/v1/gifs/search?apikey=y7nsZ4PAvM7YYmscxh8RDdA7OnNfMqT1&q=" + search + "&limit=10";
 
@@ -38,15 +47,14 @@ function renderGifs(search){
     }).then( function(response){
     
         for(var i = 0; i < 10; i++){
-            var imgDiv = $("<div class='card-body'>");
+            var imgDiv = $("<div class='card-body float-md-left float-xs-none text-center'>").attr("id", response.data[i].id);
             var rating = response.data[i].rating;
-            var stillUrl = response.data[i].images.fixed_height_still.url;
-            var animatedUrl = response.data[i].images.fixed_height.url;
-            var image = $("<img src='" + stillUrl + "' >").attr("id", response.data[i].id).addClass("gif card-body").attr("data-still", stillUrl).attr("data-animated", animatedUrl).attr("data-state", "still");
-            // var favorite = $("<img src='../images/favorite.png'>").attr("id", response.data[i].id);
+            var stillUrl = response.data[i].images.fixed_width_still.url;
+            var animatedUrl = response.data[i].images.fixed_width.url;
+            var image = $("<img src='" + stillUrl + "' >").addClass("gif card-body").attr("data-still", stillUrl).attr("data-animated", animatedUrl).attr("data-state", "still");
+            var favorite = $("<button>").text("Add to Favorites").addClass("favorite d-block btn-lg btn-block").attr("data-id", response.data[i].id);
 
-            imgDiv.append("<p> Rating " + rating.toUpperCase()).append(image);
-            imgDiv.append(image);
+            imgDiv.append("<p> Rating " + rating.toUpperCase()).append(image).append(favorite);
             
             $("#results").prepend(imgDiv);
     
